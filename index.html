@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>音読英語学習（高校生向け）</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 1em;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    .question-box {
+      margin-bottom: 1.5em;
+      background-color: white;
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      margin-top: 0.5em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .translation {
+      margin-top: 0.5em;
+      font-style: italic;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>音読英語学習（高校生向け）</h1>
+  <div id="app"></div>
+
+  <script>
+    const questions = [
+      { en: "I go to school every day.", ja: "私は毎日学校に行きます。" },
+      { en: "She studies English at home.", ja: "彼女は家で英語を勉強します。" },
+      { en: "Can you help me with my homework?", ja: "宿題を手伝ってくれますか？" },
+      { en: "He is good at playing the guitar.", ja: "彼はギターを弾くのが得意です。" },
+      { en: "They watched a movie last night.", ja: "彼らは昨晩映画を見ました。" },
+      { en: "The sun rises in the east.", ja: "太陽は東から昇ります。" },
+      { en: "Please close the window.", ja: "窓を閉めてください。" },
+      { en: "Do you like sports?", ja: "あなたはスポーツが好きですか？" },
+      { en: "It’s important to read books.", ja: "本を読むことは大切です。" },
+      { en: "We are going to the museum tomorrow.", ja: "私たちは明日博物館に行きます。" },
+      { en: "He was absent from school.", ja: "彼は学校を欠席しました。" },
+      { en: "I have never been to Kyoto.", ja: "私は京都に行ったことがありません。" },
+      { en: "Let’s practice together.", ja: "一緒に練習しましょう。" },
+      { en: "I want to be a doctor.", ja: "私は医者になりたいです。" },
+      { en: "Don’t forget your homework.", ja: "宿題を忘れないでください。" },
+      { en: "She looks happy today.", ja: "彼女は今日うれしそうです。" },
+      { en: "My favorite subject is math.", ja: "私の好きな教科は数学です。" },
+      { en: "He speaks three languages.", ja: "彼は3か国語を話します。" },
+      { en: "Can I ask you a question?", ja: "質問してもいいですか？" },
+      { en: "We enjoyed our school trip.", ja: "私たちは修学旅行を楽しみました。" },
+    ];
+
+    const app = document.getElementById("app");
+
+    questions.forEach((q, i) => {
+      const box = document.createElement("div");
+      box.className = "question-box";
+
+      const en = document.createElement("p");
+      en.textContent = `${i + 1}. ${q.en}`;
+      box.appendChild(en);
+
+      const btn = document.createElement("button");
+      btn.textContent = "日本語を表示";
+      box.appendChild(btn);
+
+      const ja = document.createElement("div");
+      ja.className = "translation";
+      ja.textContent = q.ja;
+      box.appendChild(ja);
+
+      btn.addEventListener("click", () => {
+        ja.style.display = ja.style.display === "none" ? "block" : "none";
+      });
+
+      app.appendChild(box);
+    });
+  </script>
+</body>
+</html>
