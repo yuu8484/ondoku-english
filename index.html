@@ -6,46 +6,64 @@
   <title>音読英語学習（高校生向け）</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
       margin: 0;
-      padding: 1em;
-      background-color: #f7f9fc;
-      color: #333;
+      padding: 0;
+      background-color: #f2f4f8;
+      font-family: 'Helvetica Neue', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     h1 {
-      font-size: 1.5em;
-      margin-bottom: 0.5em;
+      margin-top: 2rem;
+      font-size: 1.6em;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      padding: 1rem;
+      box-sizing: border-box;
     }
     .question-box {
-      margin-bottom: 1.5em;
-      background-color: white;
-      padding: 1em;
+      background-color: #fff;
+      margin: 1rem 0;
+      padding: 1rem;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .english {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      cursor: pointer;
+    }
+    .translation {
+      display: none;
+      font-size: 0.95em;
+      font-style: italic;
+      color: #555;
+      margin-top: 0.5em;
     }
     button {
       background-color: #007BFF;
       color: white;
       border: none;
       border-radius: 8px;
-      padding: 0.5em 1em;
-      font-size: 1em;
+      padding: 0.4em 1em;
+      font-size: 0.9em;
       margin-top: 0.5em;
       cursor: pointer;
     }
     button:hover {
       background-color: #0056b3;
     }
-    .translation {
-      margin-top: 0.5em;
-      font-style: italic;
-      display: none;
-    }
   </style>
 </head>
 <body>
   <h1>音読英語学習（高校生向け）</h1>
-  <div id="app"></div>
+  <div class="container" id="app"></div>
 
   <script>
     const questions = [
@@ -77,8 +95,14 @@
       const box = document.createElement("div");
       box.className = "question-box";
 
-      const en = document.createElement("p");
+      const en = document.createElement("div");
+      en.className = "english";
       en.textContent = `${i + 1}. ${q.en}`;
+      en.addEventListener("click", () => {
+        const utter = new SpeechSynthesisUtterance(q.en);
+        utter.lang = "en-US";
+        speechSynthesis.speak(utter);
+      });
       box.appendChild(en);
 
       const btn = document.createElement("button");
